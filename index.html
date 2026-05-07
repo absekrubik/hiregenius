@@ -19,18 +19,27 @@
 
   <header class="header">
     <div class="container navbar">
+
       <a href="#" class="logo">
         <img src="images/logo.png" alt="HireGenius Logo">
       </a>
 
-      <nav class="nav-menu">
+      <div class="menu-toggle" id="menuToggle">
+        ☰
+      </div>
+
+      <nav class="nav-menu" id="navMenu">
         <a href="#">Home</a>
-        <a href="#">Find Jobs</a>
+        <a href="jobs.html">Find Jobs</a>
         <a href="#">Companies</a>
         <a href="#">About</a>
+
+        <a href="#" class="resume-link">Create Resume</a>
+
         <a href="#">Sign In</a>
         <a href="#" class="btn btn-primary">Post a Job</a>
       </nav>
+
     </div>
   </header>
 
@@ -48,15 +57,15 @@
             and search smarter with a next-generation recruitment experience.
           </p>
 
-          <form class="search-box">
+          <form class="search-box" id="searchForm">
             <div class="search-field">
               <label>What</label>
-              <input type="text" placeholder="Job title, keyword or company">
+              <input type="text" id="keywordInput" placeholder="Job title, keyword or company">
             </div>
 
             <div class="search-field">
               <label>Where</label>
-              <input type="text" placeholder="City, state or remote">
+              <input type="text" id="locationInput" placeholder="City, state or remote">
             </div>
 
             <button type="submit" class="btn btn-primary">Search Jobs</button>
@@ -114,54 +123,26 @@
       </div>
     </section>
 
-    <section class="featured-jobs">
+    <section class="featured-jobs" id="jobs">
       <div class="container">
         <div class="section-heading reveal">
           <span class="section-label">Featured Opportunities</span>
           <h2>Premium jobs curated for top talent</h2>
-          <p>Explore the most in-demand roles from trusted employers.</p>
+          <p>Search and filter jobs based on your career goals.</p>
         </div>
 
-        <div class="job-list">
-          <article class="job-card reveal">
-            <div class="job-badge">Featured</div>
-            <h3>Frontend Developer</h3>
-            <p class="company">TechNova Solutions</p>
-            <p class="location">New York, USA</p>
-            <p class="salary">$85,000 - $100,000</p>
-            <div class="job-tags">
-              <span>Remote</span>
-              <span>Full-time</span>
-            </div>
-            <button class="btn btn-secondary">Apply Now</button>
-          </article>
-
-          <article class="job-card reveal">
-            <div class="job-badge">Urgent</div>
-            <h3>Marketing Specialist</h3>
-            <p class="company">BrandSpark Media</p>
-            <p class="location">Los Angeles, USA</p>
-            <p class="salary">$60,000 - $75,000</p>
-            <div class="job-tags">
-              <span>Hybrid</span>
-              <span>Growth</span>
-            </div>
-            <button class="btn btn-secondary">Apply Now</button>
-          </article>
-
-          <article class="job-card reveal">
-            <div class="job-badge">Top Rated</div>
-            <h3>Registered Nurse</h3>
-            <p class="company">CarePlus Hospital</p>
-            <p class="location">Chicago, USA</p>
-            <p class="salary">$70,000 - $90,000</p>
-            <div class="job-tags">
-              <span>Full-time</span>
-              <span>Healthcare</span>
-            </div>
-            <button class="btn btn-secondary">Apply Now</button>
-          </article>
+        <div class="filter-tabs reveal">
+          <button class="filter-btn active" data-category="All">All</button>
+          <button class="filter-btn" data-category="IT">IT</button>
+          <button class="filter-btn" data-category="Healthcare">Healthcare</button>
+          <button class="filter-btn" data-category="Marketing">Marketing</button>
+          <button class="filter-btn" data-category="Accounting">Accounting</button>
+          <button class="filter-btn" data-category="Hospitality">Hospitality</button>
         </div>
+
+        <div class="job-list" id="jobList"></div>
+
+        <p class="no-jobs" id="noJobs">No jobs found. Try another keyword or location.</p>
       </div>
     </section>
 
@@ -173,15 +154,38 @@
         </div>
 
         <div class="category-list">
-          <div class="category-card reveal">IT & Software</div>
-          <div class="category-card reveal">Healthcare</div>
-          <div class="category-card reveal">Accounting</div>
-          <div class="category-card reveal">Hospitality</div>
-          <div class="category-card reveal">Engineering</div>
-          <div class="category-card reveal">Education</div>
-          <div class="category-card reveal">Sales</div>
-          <div class="category-card reveal">Construction</div>
+
+        <div class="category-card reveal" data-category="IT">
+          <h3>IT & Software</h3>
+          <p>1200+ Jobs</p>
         </div>
+
+        <div class="category-card reveal" data-category="Healthcare">
+          <h3>Healthcare</h3>
+          <p>860+ Jobs</p>
+        </div>
+
+        <div class="category-card reveal" data-category="Accounting">
+          <h3>Accounting</h3>
+          <p>540+ Jobs</p>
+        </div>
+
+        <div class="category-card reveal" data-category="Hospitality">
+          <h3>Hospitality</h3>
+          <p>760+ Jobs</p>
+        </div>
+
+        <div class="category-card reveal" data-category="Marketing">
+          <h3>Marketing</h3>
+          <p>420+ Jobs</p>
+        </div>
+
+        <div class="category-card reveal" data-category="IT">
+          <h3>Engineering</h3>
+          <p>670+ Jobs</p>
+        </div>
+
+      </div>
       </div>
     </section>
 

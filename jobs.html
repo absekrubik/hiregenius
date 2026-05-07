@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Find Jobs | HireGenius Australia</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <header class="header">
+    <div class="container navbar">
+
+      <a href="index.html" class="logo">
+        <img src="images/logo.png" alt="HireGenius Logo">
+      </a>
+
+      <div class="menu-toggle" id="menuToggle">☰</div>
+
+      <nav class="nav-menu" id="navMenu">
+        <a href="index.html">Home</a>
+        <a href="jobs.html">Find Jobs</a>
+        <a href="#">Companies</a>
+        <a href="#">About</a>
+        <a href="#" class="resume-link">Create Resume</a>
+        <a href="#">Sign In</a>
+        <a href="post-job.html" class="btn btn-primary">Post a Job</a>
+      </nav>
+
+    </div>
+  </header>
+
+  <main>
+
+    <section class="jobs-hero">
+      <div class="container">
+        <span class="section-label">Find Jobs in Australia</span>
+        <h1>Discover your next opportunity</h1>
+        <p>
+          Search jobs across Australia from trusted employers. Find full-time,
+          part-time, casual, contract, remote and hybrid roles.
+        </p>
+
+        <form class="jobs-search-box" id="jobsSearchForm">
+          <input type="text" id="jobsKeyword" placeholder="Job title, keyword or company">
+          <input type="text" id="jobsLocation" placeholder="Sydney, Melbourne, Brisbane or remote">
+          <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+      </div>
+    </section>
+
+    <section class="jobs-page">
+      <div class="container jobs-layout">
+
+        <aside class="filters-sidebar">
+          <h3>Filter Jobs</h3>
+
+          <div class="filter-group">
+            <label>Category</label>
+            <select id="categoryFilter">
+              <option value="All">All Categories</option>
+              <option value="IT">IT & Software</option>
+              <option value="Healthcare">Healthcare</option>
+              <option value="Accounting">Accounting</option>
+              <option value="Hospitality">Hospitality</option>
+              <option value="Construction">Construction</option>
+              <option value="Education">Education</option>
+              <option value="Marketing">Marketing</option>
+              <option value="Administration">Administration</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label>Employment Type</label>
+            <select id="typeFilter">
+              <option value="All">All Types</option>
+              <option value="Full-time">Full-time</option>
+              <option value="Part-time">Part-time</option>
+              <option value="Casual">Casual</option>
+              <option value="Contract">Contract</option>
+              <option value="Remote">Remote</option>
+              <option value="Hybrid">Hybrid</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label>Work Mode</label>
+            <select id="modeFilter">
+              <option value="All">All Modes</option>
+              <option value="Remote">Remote</option>
+              <option value="Onsite">Onsite</option>
+              <option value="Hybrid">Hybrid</option>
+            </select>
+          </div>
+
+          <button class="btn btn-secondary filter-full-btn" id="clearFilters">
+            Clear Filters
+          </button>
+        </aside>
+
+        <div class="jobs-results">
+
+          <div class="jobs-results-top">
+            <div>
+              <h2>Available Jobs</h2>
+              <p id="jobCount">Showing jobs</p>
+            </div>
+
+            <select id="sortFilter">
+              <option value="default">Sort by Default</option>
+              <option value="newest">Newest Jobs</option>
+              <option value="salary">Highest Salary</option>
+              <option value="remote">Remote First</option>
+            </select>
+          </div>
+
+          <div class="jobs-grid" id="jobsGrid"></div>
+
+          <p class="no-jobs" id="jobsNoResult">
+            No jobs found. Try changing your search or filters.
+          </p>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-content">
+      <div>
+        <img src="images/logo.png" alt="HireGenius Logo" class="footer-logo">
+        <p>Your premium job search partner for the future of work.</p>
+      </div>
+
+      <div>
+        <h4>Company</h4>
+        <a href="index.html">Home</a>
+        <a href="jobs.html">Find Jobs</a>
+        <a href="#">Companies</a>
+        <a href="#">About</a>
+      </div>
+
+      <div>
+        <h4>Employer</h4>
+        <a href="post-job.html">Post a Job</a>
+        <a href="#">Employer Dashboard</a>
+        <a href="#">Pricing</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/jobs.js"></script>
+</body>
+</html>
