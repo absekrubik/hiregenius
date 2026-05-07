@@ -1,45 +1,13 @@
-const defaultJobs = [
-  {
-    title: "Frontend Developer",
-    company: "TechNova Solutions",
-    location: "Sydney NSW",
-    salary: 100000,
-    salaryText: "AUD $85,000 - $100,000 + super",
-    category: "IT",
-    type: "Full-time",
-    mode: "Remote",
-    badge: "Featured",
-    description: "Build modern web interfaces using HTML, CSS, JavaScript and responsive design."
-  },
-  {
-    title: "Marketing Specialist",
-    company: "BrandSpark Media",
-    location: "Melbourne VIC",
-    salary: 75000,
-    salaryText: "AUD $60,000 - $75,000 + super",
-    category: "Marketing",
-    type: "Full-time",
-    mode: "Hybrid",
-    badge: "Urgent",
-    description: "Plan campaigns, manage content, and support digital marketing growth strategies."
-  },
-  {
-    title: "Registered Nurse",
-    company: "CarePlus Hospital",
-    location: "Brisbane QLD",
-    salary: 90000,
-    salaryText: "AUD $70,000 - $90,000 + super",
-    category: "Healthcare",
-    type: "Full-time",
-    mode: "Onsite",
-    badge: "Top Rated",
-    description: "Provide patient care, coordinate with healthcare teams, and support clinical operations."
-  }
-];
+import { db } from "./firebase-config.js";
 
-const employerJobs = JSON.parse(localStorage.getItem("hireGeniusJobs")) || [];
+import {
+  collection,
+  getDocs,
+  query,
+  orderBy
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-const jobs = [...employerJobs, ...defaultJobs];
+let jobs = [];
 
 const jobsGrid = document.getElementById("jobsGrid");
 const jobsNoResult = document.getElementById("jobsNoResult");
@@ -58,6 +26,33 @@ const clearFilters = document.getElementById("clearFilters");
 const menuToggle = document.getElementById("menuToggle");
 const navMenu = document.getElementById("navMenu");
 
+menuToggle.addEventListener("click", function () {
+  navMenu.classList.toggle("active");
+});
+
+async function loadJobsFromFirebase() {
+  jobsGrid.innerHTML = "<p>Loading jobs...</p>";
+
+  try {
+    const jobsQuery = query(collection(db, "jobs"), orderBy("createdAt", "desc"));
+    const querySnapshot = await getDocs(jobsQuery);
+
+    jobs = [];
+
+    querySnapshot.forEach((doc) => {
+      jobs.push({
+        id: doc.id,
+        ...doc.data()
+      });
+    });
+
+    renderJobs(jobs);
+  } catch (error) {
+    console.error("Error loading jobs:", error);
+    jobsGrid.innerHTML = "<p>Unable to load jobs. Please check Firebase setup.</p>";
+  }
+}
+
 function renderJobs(jobArray) {
   jobsGrid.innerHTML = "";
 
@@ -70,7 +65,7 @@ function renderJobs(jobArray) {
   jobsNoResult.style.display = "none";
   jobCount.textContent = `Showing ${jobArray.length} job${jobArray.length > 1 ? "s" : ""}`;
 
-  jobArray.forEach((job, index) => {
+  jobArray.forEach((job) => {
     const card = document.createElement("article");
     card.className = "job-card";
 
@@ -88,7 +83,7 @@ function renderJobs(jobArray) {
         <span>${job.mode}</span>
       </div>
 
-      <a href="job-details.html?id=${index}" class="btn btn-secondary">View Details</a>
+      <a href="job-details.html?id=${job.id}" class="btn btn-secondary">View Details</a>
     `;
 
     jobsGrid.appendChild(card);
@@ -126,7 +121,7 @@ function filterJobs() {
   });
 
   if (sort === "salary") {
-    filtered.sort((a, b) => (b.salary || 0) - (a.salary || 0));
+    filtered.sort((a, b) => extractSalary(b.salaryText) - extractSalary(a.salaryText));
   }
 
   if (sort === "remote") {
@@ -138,6 +133,16 @@ function filterJobs() {
   }
 
   renderJobs(filtered);
+}
+
+function extractSalary(salaryText) {
+  if (!salaryText) return 0;
+
+  const numbers = salaryText.match(/\d[\d,]*/g);
+
+  if (!numbers) return 0;
+
+  return Math.max(...numbers.map(num => Number(num.replace(/,/g, ""))));
 }
 
 jobsSearchForm.addEventListener("submit", function (e) {
@@ -160,8 +165,4 @@ clearFilters.addEventListener("click", function () {
   renderJobs(jobs);
 });
 
-menuToggle.addEventListener("click", function () {
-  navMenu.classList.toggle("active");
-});
-
-renderJobs(jobs);
+loadJobsFromFirebase();
