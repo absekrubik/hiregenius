@@ -52,6 +52,7 @@ async function loadJobDetails(id) {
     document.getElementById("overviewMode").textContent = job.mode;
     document.getElementById("overviewSalary").textContent = job.salaryText;
     document.getElementById("overviewVisa").textContent = job.visaSponsorship || "Not specified";
+    document.getElementById("applyNowBtn").href = `apply.html?id=${id}`;
 
     document.title = `${job.title} | HireGenius Australia`;
   } catch (error) {

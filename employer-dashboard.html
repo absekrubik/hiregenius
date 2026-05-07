@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Employer Dashboard | HireGenius</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<header class="header">
+  <div class="container navbar">
+
+    <a href="index.html" class="logo">
+      <img src="images/logo.png" alt="HireGenius Logo">
+    </a>
+
+    <div class="menu-toggle" id="menuToggle">☰</div>
+
+    <nav class="nav-menu" id="navMenu">
+      <a href="index.html">Home</a>
+      <a href="jobs.html">Find Jobs</a>
+      <a href="post-job.html">Post Job</a>
+      <a href="employer-dashboard.html">Dashboard</a>
+      <a href="#" id="logoutBtn">Logout</a>
+    </nav>
+
+  </div>
+</header>
+
+<main>
+
+  <section class="dashboard-hero">
+    <div class="container">
+      <span class="section-label">Employer Dashboard</span>
+      <h1>Manage your job advertisements</h1>
+      <p>View jobs, check applicants and manage your hiring activity.</p>
+
+      <a href="post-job.html" class="btn btn-primary">Post New Job</a>
+    </div>
+  </section>
+
+  <section class="dashboard-page">
+    <div class="container">
+
+      <div class="dashboard-top">
+        <div>
+          <h2>Your Posted Jobs</h2>
+          <p id="dashboardCount">Loading jobs...</p>
+        </div>
+      </div>
+
+      <div class="dashboard-jobs" id="dashboardJobs"></div>
+
+      <p class="no-jobs" id="dashboardNoJobs">
+        You have not posted any jobs yet.
+      </p>
+
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer-content">
+
+    <div>
+      <img src="images/logo.png" alt="HireGenius Logo" class="footer-logo">
+      <p>Your premium job search partner for the future of work.</p>
+    </div>
+
+    <div>
+      <h4>Company</h4>
+      <a href="index.html">Home</a>
+      <a href="jobs.html">Find Jobs</a>
+      <a href="#">Companies</a>
+      <a href="#">About</a>
+    </div>
+
+    <div>
+      <h4>Employer</h4>
+      <a href="post-job.html">Post a Job</a>
+      <a href="employer-dashboard.html">Employer Dashboard</a>
+      <a href="#">Pricing</a>
+    </div>
+
+  </div>
+</footer>
+
+<script type="module" src="js/employer-dashboard.js"></script>
+
+</body>
+</html>
