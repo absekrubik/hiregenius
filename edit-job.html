@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Edit Job | HireGenius</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<header class="header">
+  <div class="container navbar">
+
+    <a href="index.html" class="logo">
+      <img src="images/logo.png" alt="HireGenius Logo">
+    </a>
+
+    <div class="menu-toggle" id="menuToggle">☰</div>
+
+    <nav class="nav-menu" id="navMenu">
+      <a href="index.html">Home</a>
+      <a href="jobs.html">Find Jobs</a>
+      <a href="post-job.html">Post Job</a>
+      <a href="employer-dashboard.html">Dashboard</a>
+      <a href="#" id="logoutBtn">Logout</a>
+    </nav>
+
+  </div>
+</header>
+
+<main>
+
+  <section class="post-job-hero">
+    <div class="container">
+      <span class="section-label">Edit Job</span>
+      <h1>Update job advertisement</h1>
+      <p>Edit your job details and save changes instantly.</p>
+    </div>
+  </section>
+
+  <section class="post-job-page">
+    <div class="container post-job-layout">
+
+      <div class="post-job-form-card">
+        <h2>Job Details</h2>
+
+        <form id="editJobForm" class="post-job-form">
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Job Title *</label>
+              <input type="text" id="jobTitle" required>
+            </div>
+
+            <div class="form-group">
+              <label>Business / Company Name *</label>
+              <input type="text" id="companyName" required>
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label>ABN</label>
+              <input type="text" id="abn">
+            </div>
+
+            <div class="form-group">
+              <label>Category *</label>
+              <select id="category" required>
+                <option value="">Select category</option>
+                <option value="IT">IT & Software</option>
+                <option value="Healthcare">Healthcare</option>
+                <option value="Accounting">Accounting</option>
+                <option value="Hospitality">Hospitality</option>
+                <option value="Construction">Construction</option>
+                <option value="Education">Education</option>
+                <option value="Marketing">Marketing</option>
+                <option value="Administration">Administration</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Job Location *</label>
+              <input type="text" id="location" required>
+            </div>
+
+            <div class="form-group">
+              <label>State / Territory *</label>
+              <select id="state" required>
+                <option value="">Select state</option>
+                <option value="NSW">New South Wales</option>
+                <option value="VIC">Victoria</option>
+                <option value="QLD">Queensland</option>
+                <option value="WA">Western Australia</option>
+                <option value="SA">South Australia</option>
+                <option value="TAS">Tasmania</option>
+                <option value="ACT">Australian Capital Territory</option>
+                <option value="NT">Northern Territory</option>
+                <option value="Remote Australia">Remote Australia</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Employment Type *</label>
+              <select id="employmentType" required>
+                <option value="">Select type</option>
+                <option value="Full-time">Full-time</option>
+                <option value="Part-time">Part-time</option>
+                <option value="Casual">Casual</option>
+                <option value="Contract">Contract</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Work Mode *</label>
+              <select id="workMode" required>
+                <option value="">Select mode</option>
+                <option value="Onsite">Onsite</option>
+                <option value="Hybrid">Hybrid</option>
+                <option value="Remote">Remote</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Salary Range *</label>
+              <input type="text" id="salary" required>
+            </div>
+
+            <div class="form-group">
+              <label>Visa Sponsorship Available?</label>
+              <select id="visaSponsorship">
+                <option value="No">No</option>
+                <option value="Yes">Yes</option>
+                <option value="Considered for suitable candidates">Considered for suitable candidates</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Job Description *</label>
+            <textarea id="description" rows="5" required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label>Key Responsibilities *</label>
+            <textarea id="responsibilities" rows="5" required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label>Requirements *</label>
+            <textarea id="requirements" rows="5" required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label>Benefits</label>
+            <textarea id="benefits" rows="4"></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary submit-job-btn">
+            Save Changes
+          </button>
+
+          <a href="employer-dashboard.html" class="btn btn-secondary submit-job-btn">
+            Back to Dashboard
+          </a>
+
+          <p id="editJobMessage" class="post-job-message"></p>
+
+        </form>
+      </div>
+
+      <aside class="post-job-tips">
+        <h3>Editing tips</h3>
+
+        <div class="tip-item">
+          <strong>Keep salary clear</strong>
+          <p>Example: AUD $80,000 - $95,000 + super.</p>
+        </div>
+
+        <div class="tip-item">
+          <strong>Update responsibilities</strong>
+          <p>Make sure the role details are accurate and current.</p>
+        </div>
+
+        <div class="tip-item">
+          <strong>Review sponsorship details</strong>
+          <p>Confirm whether visa sponsorship is available.</p>
+        </div>
+      </aside>
+
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer-content">
+
+    <div>
+      <img src="images/logo.png" alt="HireGenius Logo" class="footer-logo">
+      <p>Your premium job search partner for the future of work.</p>
+    </div>
+
+    <div>
+      <h4>Company</h4>
+      <a href="index.html">Home</a>
+      <a href="jobs.html">Find Jobs</a>
+      <a href="#">Companies</a>
+      <a href="#">About</a>
+    </div>
+
+    <div>
+      <h4>Employer</h4>
+      <a href="post-job.html">Post a Job</a>
+      <a href="employer-dashboard.html">Employer Dashboard</a>
+      <a href="pricing.html">Pricing</a>
+    </div>
+
+  </div>
+</footer>
+
+<script type="module" src="js/edit-job.js"></script>
+</body>
+</html>

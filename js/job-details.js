@@ -2,17 +2,60 @@ import { db } from "./firebase-config.js";
 
 import {
   doc,
-  getDoc
+  getDoc,
+  setDoc,
+  serverTimestamp
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+import {
+  getAuth,
+  onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+const auth = getAuth();
 
 const params = new URLSearchParams(window.location.search);
 const jobId = params.get("id");
 
+const detailBadge = document.getElementById("detailBadge");
+const detailTitle = document.getElementById("detailTitle");
+const detailCompany = document.getElementById("detailCompany");
+const detailLocation = document.getElementById("detailLocation");
+const detailType = document.getElementById("detailType");
+const detailMode = document.getElementById("detailMode");
+const detailSalary = document.getElementById("detailSalary");
+
+const detailDescription = document.getElementById("detailDescription");
+const detailResponsibilities = document.getElementById("detailResponsibilities");
+const detailRequirements = document.getElementById("detailRequirements");
+const detailBenefits = document.getElementById("detailBenefits");
+
+const overviewCompany = document.getElementById("overviewCompany");
+const overviewCategory = document.getElementById("overviewCategory");
+const overviewType = document.getElementById("overviewType");
+const overviewMode = document.getElementById("overviewMode");
+const overviewSalary = document.getElementById("overviewSalary");
+const overviewVisa = document.getElementById("overviewVisa");
+
+const applyNowBtn = document.getElementById("applyNowBtn");
+const sidebarApplyBtn = document.getElementById("sidebarApplyBtn");
+const saveJobBtn = document.getElementById("saveJobBtn");
+const saveJobMessage = document.getElementById("saveJobMessage");
+
 const menuToggle = document.getElementById("menuToggle");
 const navMenu = document.getElementById("navMenu");
 
-menuToggle.addEventListener("click", function () {
-  navMenu.classList.toggle("active");
+let currentUser = null;
+let currentJob = null;
+
+if (menuToggle && navMenu) {
+  menuToggle.addEventListener("click", function () {
+    navMenu.classList.toggle("active");
+  });
+}
+
+onAuthStateChanged(auth, function (user) {
+  currentUser = user;
 });
 
 if (!jobId) {
@@ -31,32 +74,38 @@ async function loadJobDetails(id) {
       return;
     }
 
-    const job = jobSnap.data();
+    currentJob = {
+      id: jobSnap.id,
+      ...jobSnap.data()
+    };
 
-    document.getElementById("detailBadge").textContent = job.badge || "New";
-    document.getElementById("detailTitle").textContent = job.title;
-    document.getElementById("detailCompany").textContent = job.company;
-    document.getElementById("detailLocation").textContent = `📍 ${job.location}`;
-    document.getElementById("detailType").textContent = `💼 ${job.type}`;
-    document.getElementById("detailMode").textContent = `🌐 ${job.mode}`;
-    document.getElementById("detailSalary").textContent = `💰 ${job.salaryText}`;
+    detailBadge.textContent = currentJob.badge || "New";
+    detailTitle.textContent = currentJob.title || "Untitled Job";
+    detailCompany.textContent = currentJob.company || "Company not specified";
+    detailLocation.textContent = `📍 ${currentJob.location || "Location not specified"}`;
+    detailType.textContent = `💼 ${currentJob.type || "Type not specified"}`;
+    detailMode.textContent = `🌐 ${currentJob.mode || "Mode not specified"}`;
+    detailSalary.textContent = `💰 ${currentJob.salaryText || "Salary not specified"}`;
 
-    document.getElementById("detailDescription").textContent = job.description || "Not specified";
-    document.getElementById("detailResponsibilities").innerHTML = listItems(job.responsibilities);
-    document.getElementById("detailRequirements").innerHTML = listItems(job.requirements);
-    document.getElementById("detailBenefits").innerHTML = listItems(job.benefits);
+    detailDescription.textContent = currentJob.description || "Not specified.";
+    detailResponsibilities.innerHTML = listItems(currentJob.responsibilities);
+    detailRequirements.innerHTML = listItems(currentJob.requirements);
+    detailBenefits.innerHTML = listItems(currentJob.benefits);
 
-    document.getElementById("overviewCompany").textContent = job.company;
-    document.getElementById("overviewCategory").textContent = job.category;
-    document.getElementById("overviewType").textContent = job.type;
-    document.getElementById("overviewMode").textContent = job.mode;
-    document.getElementById("overviewSalary").textContent = job.salaryText;
-    document.getElementById("overviewVisa").textContent = job.visaSponsorship || "Not specified";
-    document.getElementById("applyNowBtn").href = `apply.html?id=${id}`;
+    overviewCompany.textContent = currentJob.company || "Not specified";
+    overviewCategory.textContent = currentJob.category || "Not specified";
+    overviewType.textContent = currentJob.type || "Not specified";
+    overviewMode.textContent = currentJob.mode || "Not specified";
+    overviewSalary.textContent = currentJob.salaryText || "Not specified";
+    overviewVisa.textContent = currentJob.visaSponsorship || "Not specified";
 
-    document.title = `${job.title} | HireGenius Australia`;
+    applyNowBtn.href = `apply.html?id=${id}`;
+    sidebarApplyBtn.href = `apply.html?id=${id}`;
+
+    document.title = `${currentJob.title} | HireGenius`;
+
   } catch (error) {
-    console.error("Error loading job details:", error);
+    console.error("Error loading job:", error);
     showJobNotFound();
   }
 }
@@ -67,9 +116,46 @@ function listItems(text) {
   return text
     .split("\n")
     .filter(item => item.trim() !== "")
-    .map(item => `<li>${item}</li>`)
+    .map(item => `<li>${item.trim()}</li>`)
     .join("");
 }
+
+saveJobBtn.addEventListener("click", async function () {
+  if (!currentUser) {
+    window.location.href = "login.html";
+    return;
+  }
+
+  if (!currentJob) {
+    saveJobMessage.textContent = "Unable to save job.";
+    return;
+  }
+
+  try {
+    await setDoc(
+      doc(db, "savedJobs", `${currentUser.uid}_${currentJob.id}`),
+      {
+        userId: currentUser.uid,
+        jobId: currentJob.id,
+        title: currentJob.title || "",
+        company: currentJob.company || "",
+        location: currentJob.location || "",
+        salaryText: currentJob.salaryText || "",
+        savedAt: serverTimestamp()
+      }
+    );
+
+    saveJobMessage.textContent = "Job saved successfully.";
+    saveJobMessage.classList.add("success");
+
+    saveJobBtn.textContent = "Saved";
+  } catch (error) {
+    console.error("Error saving job:", error);
+
+    saveJobMessage.textContent = "Unable to save job.";
+    saveJobMessage.classList.remove("success");
+  }
+});
 
 function showJobNotFound() {
   document.body.innerHTML = `

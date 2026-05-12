@@ -1,8 +1,8 @@
 import { db } from "./firebase-config.js";
+import { protectPage } from "./auth-guard.js";
 
 import {
   getAuth,
-  onAuthStateChanged,
   signOut
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
@@ -26,9 +26,13 @@ const logoutBtn = document.getElementById("logoutBtn");
 const menuToggle = document.getElementById("menuToggle");
 const navMenu = document.getElementById("navMenu");
 
-menuToggle.addEventListener("click", function () {
-  navMenu.classList.toggle("active");
-});
+let currentUser = null;
+
+if (menuToggle && navMenu) {
+  menuToggle.addEventListener("click", function () {
+    navMenu.classList.toggle("active");
+  });
+}
 
 logoutBtn.addEventListener("click", async function (event) {
   event.preventDefault();
@@ -38,11 +42,8 @@ logoutBtn.addEventListener("click", async function (event) {
   window.location.href = "login.html";
 });
 
-onAuthStateChanged(auth, async function (user) {
-  if (!user) {
-    window.location.href = "login.html";
-    return;
-  }
+protectPage("employer").then(async ({ user }) => {
+  currentUser = user;
 
   await loadEmployerJobs(user.uid);
 });
@@ -91,19 +92,28 @@ function renderDashboardJobs(jobs) {
   }
 
   dashboardNoJobs.style.display = "none";
-  dashboardCount.textContent = `${jobs.length} job${jobs.length > 1 ? "s" : ""} posted`;
+
+  dashboardCount.textContent =
+    `${jobs.length} job${jobs.length > 1 ? "s" : ""} posted`;
 
   jobs.forEach((job) => {
     const card = document.createElement("article");
+
     card.className = "dashboard-job-card";
 
     card.innerHTML = `
       <div>
-        <span class="job-badge">${job.badge || "New"}</span>
+        <span class="job-badge">
+          ${job.badge || "New"}
+        </span>
 
-        <h3>${job.title || "Untitled Job"}</h3>
+        <h3>
+          ${job.title || "Untitled Job"}
+        </h3>
 
-        <p>${job.company || "Company not specified"}</p>
+        <p>
+          ${job.company || "Company not specified"}
+        </p>
 
         <p>
           ${job.location || "Location not specified"}
@@ -111,13 +121,19 @@ function renderDashboardJobs(jobs) {
           • ${job.mode || "Mode not specified"}
         </p>
 
-        <p>${job.salaryText || "Salary not specified"}</p>
+        <p>
+          ${job.salaryText || "Salary not specified"}
+        </p>
       </div>
 
       <div class="dashboard-actions">
 
         <a href="job-details.html?id=${job.id}" class="btn btn-secondary">
           View
+        </a>
+
+        <a href="edit-job.html?id=${job.id}" class="btn btn-secondary">
+          Edit
         </a>
 
         <a href="applicants.html?jobId=${job.id}" class="btn btn-primary">
@@ -153,14 +169,13 @@ function attachDeleteEvents() {
       try {
         await deleteDoc(doc(db, "jobs", jobId));
 
-        const user = auth.currentUser;
-
-        if (user) {
-          await loadEmployerJobs(user.uid);
+        if (currentUser) {
+          await loadEmployerJobs(currentUser.uid);
         }
 
       } catch (error) {
         console.error("Error deleting job:", error);
+
         alert("Unable to delete this job.");
       }
     });

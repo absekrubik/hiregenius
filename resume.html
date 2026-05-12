@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Create Resume | HireGenius</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<header class="header">
+  <div class="container navbar">
+
+    <a href="index.html" class="logo">
+      <img src="images/logo.png" alt="HireGenius Logo">
+    </a>
+
+    <div class="menu-toggle" id="menuToggle">☰</div>
+
+    <nav class="nav-menu" id="navMenu">
+      <a href="index.html">Home</a>
+      <a href="jobs.html">Find Jobs</a>
+      <a href="jobseeker-dashboard.html">Dashboard</a>
+      <a href="resume.html" class="resume-link">Create Resume</a>
+      <a href="login.html">Sign In</a>
+    </nav>
+
+  </div>
+</header>
+
+<main>
+
+  <section class="dashboard-hero">
+    <div class="container">
+      <span class="section-label">Resume Builder</span>
+      <h1>Create your professional resume</h1>
+      <p>Choose from 4 resume templates and save your profile to HireGenius.</p>
+    </div>
+  </section>
+
+  <section class="resume-page">
+    <div class="container resume-builder-layout">
+
+      <div class="resume-form-card">
+        <h2>Resume Details</h2>
+
+        <form id="resumeForm" class="post-job-form">
+
+          <div class="form-group">
+            <label>Choose Resume Template *</label>
+            <select id="templateSelect" required>
+              <option value="modern">Modern Professional</option>
+              <option value="classic">Corporate Classic</option>
+              <option value="minimal">Creative Minimal</option>
+              <option value="ats">ATS Simple</option>
+            </select>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Full Name *</label>
+              <input type="text" id="resumeName" placeholder="e.g. John Smith" required>
+            </div>
+
+            <div class="form-group">
+              <label>Email *</label>
+              <input type="email" id="resumeEmail" placeholder="e.g. john@email.com" required>
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Phone *</label>
+              <input type="text" id="resumePhone" placeholder="e.g. 04XX XXX XXX" required>
+            </div>
+
+            <div class="form-group">
+              <label>Location *</label>
+              <input type="text" id="resumeLocation" placeholder="e.g. Sydney NSW" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Professional Summary *</label>
+            <textarea id="resumeSummary" rows="4" placeholder="Write a short professional summary..." required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label>Work Experience *</label>
+            <textarea id="resumeExperience" rows="6" placeholder="Example:
+Marketing Assistant | ABC Company | 2022 - 2024
+- Managed social media campaigns
+- Assisted with customer engagement
+- Prepared weekly performance reports" required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label>Education *</label>
+            <textarea id="resumeEducation" rows="4" placeholder="Example:
+Bachelor of Business | University Name | 2023" required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label>Skills *</label>
+            <textarea id="resumeSkills" rows="3" placeholder="Example: Customer Service, Microsoft Office, Communication, Teamwork" required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label>Resume Link / Portfolio Link</label>
+            <input type="url" id="resumeLinkInput" placeholder="Optional: Google Drive, LinkedIn or portfolio link">
+          </div>
+
+          <button type="submit" class="btn btn-primary submit-job-btn">
+            Save Resume
+          </button>
+
+          <button type="button" class="btn btn-secondary submit-job-btn" id="printResumeBtn">
+            Print / Save as PDF
+          </button>
+
+          <p id="resumeMessage" class="post-job-message"></p>
+
+        </form>
+      </div>
+
+      <aside class="resume-preview-card">
+        <h2>Live Preview</h2>
+
+        <div class="resume-preview template-modern" id="resumePreview">
+
+          <div class="preview-header">
+            <h1 id="previewName">Your Name</h1>
+            <p id="previewContact">Email • Phone • Location</p>
+          </div>
+
+          <div class="preview-section">
+            <h3>Professional Summary</h3>
+            <p id="previewSummary">Your professional summary will appear here.</p>
+          </div>
+
+          <div class="preview-section">
+            <h3>Work Experience</h3>
+            <p id="previewExperience">Your work experience will appear here.</p>
+          </div>
+
+          <div class="preview-section">
+            <h3>Education</h3>
+            <p id="previewEducation">Your education will appear here.</p>
+          </div>
+
+          <div class="preview-section">
+            <h3>Skills</h3>
+            <p id="previewSkills">Your skills will appear here.</p>
+          </div>
+
+        </div>
+      </aside>
+
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer-content">
+
+    <div>
+      <img src="images/logo.png" alt="HireGenius Logo" class="footer-logo">
+      <p>Your premium job search partner for the future of work.</p>
+    </div>
+
+    <div>
+      <h4>Company</h4>
+      <a href="index.html">Home</a>
+      <a href="jobs.html">Find Jobs</a>
+      <a href="companies.html">Companies</a>
+      <a href="about.html">About</a>
+    </div>
+
+    <div>
+      <h4>Account</h4>
+      <a href="jobseeker-dashboard.html">Dashboard</a>
+      <a href="resume.html">Create Resume</a>
+      <a href="jobs.html">Find Jobs</a>
+    </div>
+
+  </div>
+</footer>
+
+<script type="module" src="js/resume.js"></script>
+
+</body>
+</html>

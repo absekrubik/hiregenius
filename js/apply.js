@@ -1,9 +1,5 @@
 import { db } from "./firebase-config.js";
-
-import {
-  getAuth,
-  onAuthStateChanged
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { protectPage } from "./auth-guard.js";
 
 import {
   doc,
@@ -12,8 +8,6 @@ import {
   addDoc,
   serverTimestamp
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-const auth = getAuth();
 
 const params = new URLSearchParams(window.location.search);
 const jobId = params.get("id");
@@ -30,6 +24,7 @@ const navMenu = document.getElementById("navMenu");
 
 let currentJob = null;
 let currentUser = null;
+let currentUserData = null;
 
 menuToggle.addEventListener("click", function () {
   navMenu.classList.toggle("active");
@@ -40,15 +35,12 @@ if (!jobId) {
   applyForm.style.display = "none";
 }
 
-onAuthStateChanged(auth, async function (user) {
-  if (!user) {
-    window.location.href = "login.html";
-    return;
-  }
-
+protectPage("jobseeker").then(async ({ user, userData }) => {
   currentUser = user;
+  currentUserData = userData;
 
   applicantEmail.value = user.email || "";
+  applicantName.value = userData.fullName || "";
 
   await loadJob();
 });
@@ -69,8 +61,8 @@ async function loadJob() {
       ...jobSnap.data()
     };
 
-    applyJobTitle.textContent = `Applying for: ${currentJob.title} at ${currentJob.company}`;
-
+    applyJobTitle.textContent =
+      `Applying for: ${currentJob.title} at ${currentJob.company}`;
   } catch (error) {
     console.error(error);
     applyJobTitle.textContent = "Unable to load job.";
@@ -111,7 +103,7 @@ applyForm.addEventListener("submit", async function (event) {
 
     applyForm.reset();
     applicantEmail.value = currentUser.email || "";
-
+    applicantName.value = currentUserData.fullName || "";
   } catch (error) {
     console.error(error);
     applyMessage.textContent = "Unable to submit application.";

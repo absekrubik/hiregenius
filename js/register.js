@@ -63,7 +63,7 @@ registerForm.addEventListener("submit", async function (event) {
       if (role === "employer") {
         window.location.href = "employer-dashboard.html";;
       } else {
-        window.location.href = "jobs.html";
+        window.location.href = "jobseeker-dashboard.html";
       }
 
     }, 1500);

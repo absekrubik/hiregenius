@@ -14,240 +14,166 @@
 </head>
 <body>
 
-  <header class="header">
-    <div class="container navbar">
+<header class="header">
+  <div class="container navbar">
 
-      <a href="index.html" class="logo">
-        <img src="images/logo.png" alt="HireGenius Logo">
-      </a>
+    <a href="index.html" class="logo">
+      <img src="images/logo.png" alt="HireGenius Logo">
+    </a>
 
-      <div class="menu-toggle" id="menuToggle">☰</div>
+    <div class="menu-toggle" id="menuToggle">☰</div>
 
-      <nav class="nav-menu" id="navMenu">
-        <a href="index.html">Home</a>
-        <a href="jobs.html">Find Jobs</a>
-        <a href="#">Companies</a>
-        <a href="#">About</a>
-        <a href="#" class="resume-link">Create Resume</a>
-        <a href="login.html">Sign In</a>
-        <a href="#" class="btn btn-primary">Post a Job</a>
-      </nav>
+    <nav class="nav-menu" id="navMenu">
+      <a href="index.html">Home</a>
+      <a href="jobs.html">Find Jobs</a>
+      <a href="companies.html">Companies</a>
+      <a href="about.html">About</a>
+      <a href="resume.html" class="resume-link">Create Resume</a>
+      <a href="login.html">Sign In</a>
+      <a href="post-job.html" class="btn btn-primary">Post a Job</a>
+    </nav>
+
+  </div>
+</header>
+
+<main>
+
+  <section class="details-hero">
+    <div class="container">
+
+      <a href="jobs.html" class="back-link">← Back to Jobs</a>
+
+      <div class="details-hero-card">
+
+        <div>
+          <span class="job-badge" id="detailBadge">Loading</span>
+
+          <h1 id="detailTitle">Loading job...</h1>
+
+          <p class="details-company" id="detailCompany">Company</p>
+
+          <div class="details-meta">
+            <span id="detailLocation">📍 Location</span>
+            <span id="detailType">💼 Type</span>
+            <span id="detailMode">🌐 Mode</span>
+            <span id="detailSalary">💰 Salary</span>
+          </div>
+        </div>
+
+        <div class="details-actions">
+          <a href="#" id="applyNowBtn" class="btn btn-primary">Apply Now</a>
+          <button id="saveJobBtn" class="btn btn-secondary">Save Job</button>
+        </div>
+
+      </div>
+
+      <p id="saveJobMessage" class="post-job-message"></p>
 
     </div>
-  </header>
+  </section>
 
-  <main>
+  <section class="job-details-page">
+    <div class="container details-layout">
 
-    <section class="details-hero">
-      <div class="container">
-        <a href="jobs.html" class="back-link">← Back to Jobs</a>
+      <div class="details-main">
 
-        <div class="details-hero-card">
-          <div>
-            <span class="job-badge">Featured</span>
-            <h1>Frontend Developer</h1>
-            <p class="details-company">TechNova Solutions</p>
+        <article class="details-card">
+          <h2>Job Description</h2>
+          <p id="detailDescription">Loading...</p>
+        </article>
 
-            <div class="details-meta">
-              <span>📍 New York, USA</span>
-              <span>💼 Full-time</span>
-              <span>🌐 Remote</span>
-              <span>💰 $85,000 - $100,000</span>
-            </div>
+        <article class="details-card">
+          <h2>Key Responsibilities</h2>
+          <ul id="detailResponsibilities"></ul>
+        </article>
+
+        <article class="details-card">
+          <h2>Requirements</h2>
+          <ul id="detailRequirements"></ul>
+        </article>
+
+        <article class="details-card">
+          <h2>Benefits</h2>
+          <ul id="detailBenefits"></ul>
+        </article>
+
+      </div>
+
+      <aside class="details-sidebar">
+
+        <div class="sidebar-card">
+          <h3>Job Overview</h3>
+
+          <div class="overview-item">
+            <span>Company</span>
+            <strong id="overviewCompany">Loading</strong>
           </div>
 
-          <div class="details-actions">
-            <<a href="#" id="applyNowBtn" class="btn btn-primary">Apply Now</a>
-            <a href="#" class="btn btn-secondary">Save Job</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="job-details-page">
-      <div class="container details-layout">
-
-        <div class="details-main">
-
-          <article class="details-card">
-            <h2>Job Description</h2>
-            <p>
-              TechNova Solutions is seeking a talented Frontend Developer to join our growing digital product team.
-              The successful candidate will build modern, responsive, and user-friendly web interfaces using HTML,
-              CSS, JavaScript, and modern frontend practices.
-            </p>
-            <p>
-              This role is ideal for someone who enjoys clean UI design, performance-focused development,
-              and working with a collaborative technology team.
-            </p>
-          </article>
-
-          <article class="details-card">
-            <h2>Key Responsibilities</h2>
-            <ul>
-              <li>Develop responsive website layouts using HTML, CSS, and JavaScript.</li>
-              <li>Convert UI/UX designs into clean and functional web pages.</li>
-              <li>Optimize website speed, accessibility, and mobile responsiveness.</li>
-              <li>Work with designers and backend developers to improve user experience.</li>
-              <li>Maintain code quality and follow modern frontend development standards.</li>
-            </ul>
-          </article>
-
-          <article class="details-card">
-            <h2>Requirements</h2>
-            <ul>
-              <li>Strong understanding of HTML5, CSS3, and JavaScript.</li>
-              <li>Experience creating responsive and mobile-friendly websites.</li>
-              <li>Basic knowledge of UI/UX principles.</li>
-              <li>Ability to work independently and as part of a team.</li>
-              <li>Knowledge of Git, React, or API integration will be an advantage.</li>
-            </ul>
-          </article>
-
-          <article class="details-card">
-            <h2>Benefits</h2>
-            <ul>
-              <li>Competitive salary package.</li>
-              <li>Remote and flexible working options.</li>
-              <li>Career development and training opportunities.</li>
-              <li>Supportive and innovative work environment.</li>
-            </ul>
-          </article>
-
-        </div>
-
-        <aside class="details-sidebar">
-
-          <div class="sidebar-card">
-            <h3>Job Overview</h3>
-
-            <div class="overview-item">
-              <span>Company</span>
-              <strong>TechNova Solutions</strong>
-            </div>
-
-            <div class="overview-item">
-              <span>Category</span>
-              <strong>IT & Software</strong>
-            </div>
-
-            <div class="overview-item">
-              <span>Job Type</span>
-              <strong>Full-time</strong>
-            </div>
-
-            <div class="overview-item">
-              <span>Work Mode</span>
-              <strong>Remote</strong>
-            </div>
-
-            <div class="overview-item">
-              <span>Salary</span>
-              <strong>$85,000 - $100,000</strong>
-            </div>
-
-            <div class="overview-item">
-              <span>Posted</span>
-              <strong>Recently</strong>
-            </div>
+          <div class="overview-item">
+            <span>Category</span>
+            <strong id="overviewCategory">Loading</strong>
           </div>
 
-          <div class="sidebar-card apply-card">
-            <h3>Ready to apply?</h3>
-            <p>Create your resume and apply faster with HireGenius.</p>
-            <a href="#" id="applyNowBtn" class="btn btn-primary">Apply Now</a>
+          <div class="overview-item">
+            <span>Job Type</span>
+            <strong id="overviewType">Loading</strong>
           </div>
 
-        </aside>
+          <div class="overview-item">
+            <span>Work Mode</span>
+            <strong id="overviewMode">Loading</strong>
+          </div>
 
-      </div>
-    </section>
+          <div class="overview-item">
+            <span>Salary</span>
+            <strong id="overviewSalary">Loading</strong>
+          </div>
 
-    <section class="similar-jobs">
-      <div class="container">
-        <div class="section-heading">
-          <span class="section-label">Similar Jobs</span>
-          <h2>You may also like</h2>
+          <div class="overview-item">
+            <span>Visa Sponsorship</span>
+            <strong id="overviewVisa">Loading</strong>
+          </div>
         </div>
 
-        <div class="job-list">
-
-          <article class="job-card">
-            <div class="job-badge">Premium</div>
-            <h3>Software Engineer</h3>
-            <p class="company">CloudCore Labs</p>
-            <p class="location">Remote</p>
-            <p class="salary">$95,000 - $120,000</p>
-
-            <div class="job-tags">
-              <span>IT</span>
-              <span>Remote</span>
-            </div>
-
-            <a href="job-details.html" class="btn btn-secondary">View Details</a>
-          </article>
-
-          <article class="job-card">
-            <div class="job-badge">New</div>
-            <h3>UI Designer</h3>
-            <p class="company">PixelCraft Studio</p>
-            <p class="location">San Francisco, USA</p>
-            <p class="salary">$75,000 - $95,000</p>
-
-            <div class="job-tags">
-              <span>Design</span>
-              <span>Hybrid</span>
-            </div>
-
-            <a href="job-details.html" class="btn btn-secondary">View Details</a>
-          </article>
-
-          <article class="job-card">
-            <div class="job-badge">Urgent</div>
-            <h3>Web Developer</h3>
-            <p class="company">DigitalWave Agency</p>
-            <p class="location">Austin, USA</p>
-            <p class="salary">$70,000 - $90,000</p>
-
-            <div class="job-tags">
-              <span>IT</span>
-              <span>Full-time</span>
-            </div>
-
-            <a href="job-details.html" class="btn btn-secondary">View Details</a>
-          </article>
-
+        <div class="sidebar-card apply-card">
+          <h3>Ready to apply?</h3>
+          <p>Create your resume and apply faster with HireGenius.</p>
+          <a href="#" id="sidebarApplyBtn" class="btn btn-primary">Apply Now</a>
         </div>
-      </div>
-    </section>
 
-  </main>
+      </aside>
 
-  <footer class="footer">
-    <div class="container footer-content">
-      <div>
-        <img src="images/logo.png" alt="HireGenius Logo" class="footer-logo">
-        <p>Your premium job search partner for the future of work.</p>
-      </div>
-
-      <div>
-        <h4>Company</h4>
-        <a href="index.html">Home</a>
-        <a href="jobs.html">Find Jobs</a>
-        <a href="#">Companies</a>
-        <a href="#">About</a>
-      </div>
-
-      <div>
-        <h4>Support</h4>
-        <a href="#">Contact</a>
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms & Conditions</a>
-      </div>
     </div>
-  </footer>
+  </section>
 
-  <script type="module" src="js/job-details.js"></script>
+</main>
 
+<footer class="footer">
+  <div class="container footer-content">
+
+    <div>
+      <img src="images/logo.png" alt="HireGenius Logo" class="footer-logo">
+      <p>Your premium job search partner for the future of work.</p>
+    </div>
+
+    <div>
+      <h4>Company</h4>
+      <a href="index.html">Home</a>
+      <a href="jobs.html">Find Jobs</a>
+      <a href="#">Companies</a>
+      <a href="#">About</a>
+    </div>
+
+    <div>
+      <h4>Employer</h4>
+      <a href="post-job.html">Post a Job</a>
+      <a href="employer-dashboard.html">Employer Dashboard</a>
+      <a href="pricing.html">Pricing</a>
+    </div>
+
+  </div>
+</footer>
+
+<script type="module" src="js/job-details.js"></script>
 </body>
 </html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Job Seeker Dashboard | HireGenius</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<header class="header">
+  <div class="container navbar">
+
+    <a href="index.html" class="logo">
+      <img src="images/logo.png" alt="HireGenius Logo">
+    </a>
+
+    <div class="menu-toggle" id="menuToggle">☰</div>
+
+    <nav class="nav-menu" id="navMenu">
+      <a href="index.html">Home</a>
+      <a href="jobs.html">Find Jobs</a>
+      <a href="jobseeker-dashboard.html">Dashboard</a>
+      <a href="resume.html" class="resume-link">Create Resume</a>
+      <a href="#" id="logoutBtn">Logout</a>
+    </nav>
+
+  </div>
+</header>
+
+<main>
+
+  <section class="dashboard-hero">
+    <div class="container">
+      <span class="section-label">Job Seeker Dashboard</span>
+      <h1>Manage your career activity</h1>
+      <p>Track your applications, saved jobs and resume progress.</p>
+
+      <a href="jobs.html" class="btn btn-primary">Browse Jobs</a>
+    </div>
+  </section>
+
+  <section class="dashboard-page">
+    <div class="container dashboard-summary">
+
+      <div class="summary-card">
+        <h3 id="applicationsCount">0</h3>
+        <p>Applications Submitted</p>
+      </div>
+
+      <div class="summary-card">
+        <h3 id="savedJobsSummaryCount">0</h3>
+        <p>Saved Jobs</p>
+      </div>
+
+      <div class="summary-card">
+        <h3>Resume</h3>
+        <p><a href="resume.html">Create or update resume</a></p>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="dashboard-page">
+    <div class="container">
+
+      <div class="dashboard-top">
+        <div>
+          <h2>My Applications</h2>
+          <p id="jobseekerCount">Loading applications...</p>
+        </div>
+      </div>
+
+      <div class="dashboard-jobs" id="jobseekerApplications"></div>
+
+      <p class="no-jobs" id="jobseekerNoApplications">
+        You have not applied for any jobs yet.
+      </p>
+
+    </div>
+  </section>
+
+  <section class="dashboard-page">
+    <div class="container">
+
+      <div class="dashboard-top">
+        <div>
+          <h2>Saved Jobs</h2>
+          <p id="savedJobsCount">Loading saved jobs...</p>
+        </div>
+      </div>
+
+      <div class="dashboard-jobs" id="savedJobsContainer"></div>
+
+      <p class="no-jobs" id="noSavedJobs">
+        No saved jobs yet.
+      </p>
+
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer-content">
+
+    <div>
+      <img src="images/logo.png" alt="HireGenius Logo" class="footer-logo">
+      <p>Your premium job search partner for the future of work.</p>
+    </div>
+
+    <div>
+      <h4>Company</h4>
+      <a href="index.html">Home</a>
+      <a href="jobs.html">Find Jobs</a>
+      <a href="companies.html">Companies</a>
+      <a href="about.html">About</a>
+    </div>
+
+    <div>
+      <h4>Account</h4>
+      <a href="jobseeker-dashboard.html">Dashboard</a>
+      <a href="resume.html">Create Resume</a>
+      <a href="jobs.html">Find Jobs</a>
+    </div>
+
+  </div>
+</footer>
+
+<script type="module" src="js/jobseeker-dashboard.js"></script>
+</body>
+</html>
