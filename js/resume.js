@@ -6,7 +6,7 @@ import {
   setDoc,
   getDoc,
   serverTimestamp
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+} from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
 
 const resumeForm = document.getElementById("resumeForm");
 const resumeMessage = document.getElementById("resumeMessage");

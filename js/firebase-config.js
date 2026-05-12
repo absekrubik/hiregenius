@@ -1,17 +1,16 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
 
 import {
   getFirestore
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+} from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyB3K6h-MouYevse_o9fuij8TxEpyCfDAeM",
-    authDomain: "hiregenius-8d715.firebaseapp.com",
-    projectId: "hiregenius-8d715",
-    storageBucket: "hiregenius-8d715.firebasestorage.app",
-    messagingSenderId: "236374208995",
-    appId: "1:236374208995:web:ba70ae33d3f2c5cfc7b0d6",
-    measurementId: "G-ZT58KPMP8K"
+    apiKey: "AIzaSyAN2OnJFVsMlbotv6d_zKfgE_L1Fru3oao",
+    authDomain: "hiregenius-816ad.firebaseapp.com",
+    projectId: "hiregenius-816ad",
+    storageBucket: "hiregenius-816ad.firebasestorage.app",
+    messagingSenderId: "295783800991",
+    appId: "1:295783800991:web:29a2c1024c10bc17f202aa"
   };
 
 const app = initializeApp(firebaseConfig);

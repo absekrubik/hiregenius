@@ -4,7 +4,7 @@ import { protectPage } from "./auth-guard.js";
 import {
   getAuth,
   signOut
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+} from "https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
 
 import {
   collection,
@@ -12,7 +12,7 @@ import {
   where,
   getDocs,
   orderBy
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+} from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
 
 const auth = getAuth();
 
