@@ -1796,7 +1796,18 @@ section {
 }
 
 /* PRINT RESUME ONLY */
+/* A4 PRINT RESUME */
 @media print {
+
+  @page {
+    size: A4;
+    margin: 12mm;
+  }
+
+  body {
+    background: #ffffff;
+  }
+
   body * {
     visibility: hidden;
   }
@@ -1810,10 +1821,47 @@ section {
     position: absolute;
     left: 0;
     top: 0;
-    width: 100%;
-    min-height: auto;
-    box-shadow: none;
-    border-radius: 0;
+
+    width: 210mm;
+    min-height: 297mm;
+
+    padding: 18mm;
+
+    background: #ffffff;
+
+    box-shadow: none !important;
+    border: none !important;
+
+    overflow: hidden;
+  }
+
+  .preview-header h1 {
+    font-size: 28px !important;
+  }
+
+  .preview-header p {
+    font-size: 13px !important;
+  }
+
+  .preview-section h3 {
+    font-size: 14px !important;
+  }
+
+  .preview-section p,
+  .preview-section li {
+    font-size: 12px !important;
+    line-height: 1.6 !important;
+  }
+
+  .header,
+  .footer,
+  .resume-form-card,
+  .btn,
+  .menu-toggle,
+  .nav-menu,
+  .bg-orb,
+  .bg-grid {
+    display: none !important;
   }
 }
 
